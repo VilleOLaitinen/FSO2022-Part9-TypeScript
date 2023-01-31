@@ -41,8 +41,8 @@ const calculateExercises = (exerciseHours: Array<number>, target: number): Resul
     exerciseHours.reduce((sum, hours) => sum + hours, 0) / periodLength;
   const success: boolean = average > target;
 
-  let rating: number = 1;
-  let ratingDescription: string = 'not good, try to do better';
+  let rating = 1;
+  let ratingDescription = 'not good, try to do better';
 
   if (average > target + 0.5) {
     rating = 3;
