@@ -8,6 +8,32 @@ interface Result {
   average: number;
 }
 
+interface CalculationArgs {
+  exerciseHours: Array<number>;
+  target: number;
+}
+
+const parseExerciseArgs = (args: Array<string>): CalculationArgs => {
+  if (args.length < 4) throw new Error('Not enough arguments');
+  const asNumbers: Array<number> = args.slice(2).map(Number);
+
+  asNumbers.forEach((element) => {
+    if (isNaN(element)) {
+      throw new Error('Every argument has to be a number!');
+    } else if (element < 0) {
+      throw new Error('No negative numbers allowed!');
+    }
+  });
+
+  const target: number = asNumbers[0];
+  const exerciseHours: Array<number> = asNumbers.slice(1);
+
+  return {
+    exerciseHours,
+    target,
+  };
+};
+
 const calculateExercises = (exerciseHours: Array<number>, target: number): Result => {
   const periodLength: number = exerciseHours.length;
   const trainingDays: number = exerciseHours.filter((hours) => hours > 0).length;
@@ -37,4 +63,13 @@ const calculateExercises = (exerciseHours: Array<number>, target: number): Resul
   };
 };
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2));
+try {
+  const { exerciseHours, target } = parseExerciseArgs(process.argv);
+  console.log(calculateExercises(exerciseHours, target));
+} catch (error: unknown) {
+  let errorMessage = 'Something bad happened.';
+  if (error instanceof Error) {
+    errorMessage += ' Error: ' + error.message;
+  }
+  console.log(errorMessage);
+}
