@@ -2,16 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import patientService from '../../services/patients';
 import { Gender, Patient } from '../../types';
-import {
-  Box,
-  Table,
-  Button,
-  TableHead,
-  Typography,
-  TableCell,
-  TableRow,
-  TableBody,
-} from '@mui/material';
+import { Box } from '@mui/material';
 import TransgenderIcon from '@mui/icons-material/Transgender';
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
