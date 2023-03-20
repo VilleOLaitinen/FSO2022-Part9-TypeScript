@@ -21,9 +21,10 @@ const create = async (object: PatientFormValues) => {
   return data;
 };
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {
+const exportObject = {
   getAll,
   getById,
   create,
 };
+
+export default exportObject;
